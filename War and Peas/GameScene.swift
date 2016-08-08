@@ -5,6 +5,7 @@ class GameScene: SKScene {
     // player sprite
     let player = SKSpriteNode(imageNamed: "Pod")
     
+    
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.whiteColor()
         //player position is horizontally centered and vertically 10%
@@ -22,18 +23,20 @@ class GameScene: SKScene {
     
     
     
-    
+    //functions to return random values (including within a range)
     func random() -> CGFloat {
         return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
     }
-    
     func random(min min: CGFloat, max: CGFloat) -> CGFloat {
         return random() * (max - min) + min
     }
     
+    
+    
+    
     func addMonster() {
         
-        // Create sprite
+        // Create monster sprite
         let monster = SKSpriteNode(imageNamed: "Tomato")
         
         
@@ -41,6 +44,7 @@ class GameScene: SKScene {
         // Determine where to spawn the monster along the Y axis
         let actualY = random(min: monster.size.height/2, max: size.height - monster.size.height/2)
         
+        //note CGPoint is a type for x,y points
         monster.position = CGPoint(x: size.width + monster.size.width/2, y: actualY)
         
         addChild(monster)
@@ -48,7 +52,7 @@ class GameScene: SKScene {
         // random speed of the monster
         let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
         
-        // Create the actions: move, then remove from screen
+        // Create the actions: move to other side of screen, then remove
         let actionMove = SKAction.moveTo(CGPoint(x: -monster.size.width/2, y: actualY), duration: NSTimeInterval(actualDuration))
         let actionMoveDone = SKAction.removeFromParent()
         
