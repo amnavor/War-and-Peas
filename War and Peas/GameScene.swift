@@ -1,6 +1,14 @@
 import SpriteKit
 
 
+struct PhysicsCategory {
+    //category is 32-bit integer, ie each bit represents a category
+    static let None      : UInt32 = 0
+    static let All       : UInt32 = UInt32.max
+    static let Monster   : UInt32 = 0b1
+    static let Projectile: UInt32 = 0b10
+}
+
 //some operator overloading to work with x,y coordinates (vector math)
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x + right.x, y: left.y + right.y)
