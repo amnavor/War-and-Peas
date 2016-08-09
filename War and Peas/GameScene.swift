@@ -1,5 +1,7 @@
 import SpriteKit
 
+
+//some operator overloading to work with x,y coordinates (vector math)
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x + right.x, y: left.y + right.y)
 }
@@ -27,10 +29,14 @@ extension CGPoint {
         return sqrt(x*x + y*y)
     }
     
+    //converts self into unit vector of length 1
     func normalized() -> CGPoint {
         return self / length()
     }
 }
+
+
+
 
 class GameScene: SKScene {
     
@@ -89,6 +95,36 @@ class GameScene: SKScene {
         let actionMoveDone = SKAction.removeFromParent()
         
         monster.runAction(SKAction.sequence([actionMove, actionMoveDone]))
+        
+    }
+    
+    
+    
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        //select touch by user
+        guard let touch = touches.first else {
+            return
+        }
+        let touchLocation = touch.locationInNode(self)
+        
+        //check if projectile is being launched in right direction
+        let projectile = SKSpriteNode(imageNamed: "Pea")
+        projectile.position = player.position
+        let offset = touchLocation - projectile.position
+        if (offset.x < 0) { return }
+        addChild(projectile)
+        
+        //normalize into unit vector of length 1 and shoot off screen
+        let direction = offset.normalized()
+        let shootAmount = direction * 1000
+        let realDest = shootAmount + projectile.position
+        
+        //action: shoot and remove
+        let actionMove = SKAction.moveTo(realDest, duration: 2.0)
+        let actionMoveDone = SKAction.removeFromParent()
+        projectile.runAction(SKAction.sequence([actionMove, actionMoveDone]))
         
     }
 }
