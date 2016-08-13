@@ -10,10 +10,7 @@ struct PhysicsCategory {
 }
 
 
-
-
-
-//some operator overloading to work with x,y coordinates (vector math)
+//operator overloading to work with x,y coordinates (vector math)
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x + right.x, y: left.y + right.y)
 }
@@ -50,7 +47,13 @@ extension CGPoint {
 
 
 
-class GameScene: SKScene {
+
+
+
+
+
+
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // player sprite
     let player = SKSpriteNode(imageNamed: "Pod")
@@ -61,6 +64,10 @@ class GameScene: SKScene {
         //player position is horizontally centered and vertically 10%
         player.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
         addChild(player)
+        
+        physicsWorld.gravity = CGVectorMake(0, 0) //no gravity
+        //scene is delegate for physics interactions
+        physicsWorld.contactDelegate = self
         
         //run "addMonster" function every 1 second
         runAction(SKAction.repeatActionForever(
@@ -90,6 +97,15 @@ class GameScene: SKScene {
         // Create monster sprite
         let monster = SKSpriteNode(imageNamed: "Tomato")
         
+        //make a physics body the size of the monster
+        monster.physicsBody = SKPhysicsBody(rectangleOfSize: monster.size)
+        //dynamic = your code controls monster, not the physics engine
+        monster.physicsBody?.dynamic = true
+        monster.physicsBody?.categoryBitMask = PhysicsCategory.Monster
+        //contact is what it should notify about, and collision is what
+        //it should alter movement for (ie make them bounce off)
+        monster.physicsBody?.contactTestBitMask = PhysicsCategory.Projectile
+        monster.physicsBody?.collisionBitMask = PhysicsCategory.None
         
         // Position the monster slightly off-screen along the right edge
         // Determine where to spawn the monster along the Y axis
@@ -122,12 +138,15 @@ class GameScene: SKScene {
         }
         let touchLocation = touch.locationInNode(self)
         
+        
         //check if projectile is being launched in right direction
         let projectile = SKSpriteNode(imageNamed: "Pea")
         projectile.position = player.position
         let offset = touchLocation - projectile.position
         if (offset.x < 0) { return }
         addChild(projectile)
+        
+
         
         //normalize into unit vector of length 1 and shoot off screen
         let direction = offset.normalized()
