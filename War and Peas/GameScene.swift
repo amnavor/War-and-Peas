@@ -146,7 +146,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (offset.x < 0) { return }
         addChild(projectile)
         
-
+        projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectile.size.width/2)
+        projectile.physicsBody?.dynamic = true
+        projectile.physicsBody?.categoryBitMask = PhysicsCategory.Projectile
+        projectile.physicsBody?.contactTestBitMask = PhysicsCategory.Monster
+        projectile.physicsBody?.collisionBitMask = PhysicsCategory.None
+        //use precise... for fast moving bodies like projectiles
+        projectile.physicsBody?.usesPreciseCollisionDetection = true
         
         //normalize into unit vector of length 1 and shoot off screen
         let direction = offset.normalized()
