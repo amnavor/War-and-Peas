@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B502B7331D59926400080EED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B502B7321D59926400080EED /* Assets.xcassets */; };
+		B56564381D60EB3300230B4E /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = B56564371D60EB3300230B4E /* Sounds */; };
 		B5C12B5B1D5922F200F9E4CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C12B5A1D5922F200F9E4CC /* AppDelegate.swift */; };
 		B5C12B5F1D5922F200F9E4CC /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C12B5E1D5922F200F9E4CC /* GameScene.swift */; };
 		B5C12B611D5922F200F9E4CC /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C12B601D5922F200F9E4CC /* GameViewController.swift */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		B502B7321D59926400080EED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B56564371D60EB3300230B4E /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = ../Sounds; sourceTree = "<group>"; };
 		B5C12B571D5922F200F9E4CC /* War and Peas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "War and Peas.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C12B5A1D5922F200F9E4CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5C12B5E1D5922F200F9E4CC /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				B5C12B5E1D5922F200F9E4CC /* GameScene.swift */,
 				B5C12B601D5922F200F9E4CC /* GameViewController.swift */,
 				B502B7321D59926400080EED /* Assets.xcassets */,
+				B56564371D60EB3300230B4E /* Sounds */,
 				B5C12B621D5922F200F9E4CC /* Main.storyboard */,
 				B5C12B671D5922F200F9E4CC /* LaunchScreen.storyboard */,
 				B5C12B6A1D5922F200F9E4CC /* Info.plist */,
@@ -127,6 +130,7 @@
 			files = (
 				B5C12B691D5922F200F9E4CC /* LaunchScreen.storyboard in Resources */,
 				B502B7331D59926400080EED /* Assets.xcassets in Resources */,
+				B56564381D60EB3300230B4E /* Sounds in Resources */,
 				B5C12B641D5922F200F9E4CC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
