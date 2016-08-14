@@ -98,7 +98,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let monster = SKSpriteNode(imageNamed: "Tomato")
         
         //make a physics body the size of the monster
-        monster.physicsBody = SKPhysicsBody(rectangleOfSize: monster.size)
+        monster.physicsBody = SKPhysicsBody(circleOfRadius: monster.size.width/4)
         //dynamic = your code controls monster, not the physics engine
         monster.physicsBody?.dynamic = true
         monster.physicsBody?.categoryBitMask = PhysicsCategory.Monster
@@ -143,7 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let projectile = SKSpriteNode(imageNamed: "Pea")
         projectile.position = player.position
         
-        projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectile.size.width/2)
+        projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectile.size.width/3)
         projectile.physicsBody?.dynamic = true
         projectile.physicsBody?.categoryBitMask = PhysicsCategory.Projectile
         projectile.physicsBody?.contactTestBitMask = PhysicsCategory.Monster
@@ -166,6 +166,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         projectile.runAction(SKAction.sequence([actionMove, actionMoveDone]))
         
     }
+    
+    //separate of touchesEnded method
         func projectileDidCollideWithMonster(projectile:SKSpriteNode, monster:SKSpriteNode) {
             print("Hit")
             projectile.removeFromParent()
@@ -175,7 +177,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //check if a collision of monster and projectile, then call didCollide
         func didBeginContact(contact: SKPhysicsContact) {
-            print("Hit1")
             var firstBody: SKPhysicsBody
             var secondBody: SKPhysicsBody
             if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
