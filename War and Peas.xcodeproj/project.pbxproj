@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B502B7331D59926400080EED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B502B7321D59926400080EED /* Assets.xcassets */; };
+		B52B59471D610002001D513A /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52B59461D610002001D513A /* GameOverScene.swift */; };
 		B56564381D60EB3300230B4E /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = B56564371D60EB3300230B4E /* Sounds */; };
 		B5C12B5B1D5922F200F9E4CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C12B5A1D5922F200F9E4CC /* AppDelegate.swift */; };
 		B5C12B5F1D5922F200F9E4CC /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C12B5E1D5922F200F9E4CC /* GameScene.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		B502B7321D59926400080EED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B52B59461D610002001D513A /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		B56564371D60EB3300230B4E /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = ../Sounds; sourceTree = "<group>"; };
 		B5C12B571D5922F200F9E4CC /* War and Peas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "War and Peas.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C12B5A1D5922F200F9E4CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				B5C12B5A1D5922F200F9E4CC /* AppDelegate.swift */,
+				B52B59461D610002001D513A /* GameOverScene.swift */,
 				B5C12B5E1D5922F200F9E4CC /* GameScene.swift */,
 				B5C12B601D5922F200F9E4CC /* GameViewController.swift */,
 				B502B7321D59926400080EED /* Assets.xcassets */,
@@ -144,6 +147,7 @@
 			files = (
 				B5C12B5F1D5922F200F9E4CC /* GameScene.swift in Sources */,
 				B5C12B611D5922F200F9E4CC /* GameViewController.swift in Sources */,
+				B52B59471D610002001D513A /* GameOverScene.swift in Sources */,
 				B5C12B5B1D5922F200F9E4CC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
