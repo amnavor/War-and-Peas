@@ -164,6 +164,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let actionMoveDone = SKAction.removeFromParent()
         projectile.runAction(SKAction.sequence([actionMove, actionMoveDone]))
         
+        func projectileDidCollideWithMonster(projectile:SKSpriteNode, monster:SKSpriteNode) {
+            print("Hit")
+            projectile.removeFromParent()
+            monster.removeFromParent()
+        }
     }
 }
 
