@@ -177,7 +177,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //check if a collision of monster and projectile, then call didCollide
         func didBeginContact(contact: SKPhysicsContact) {
-            var firstBody: SKPhysicsBody
+            var firstBody: SKPhysicsBody //lower category BitMask, like Monster
             var secondBody: SKPhysicsBody
             if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
                 firstBody = contact.bodyA
@@ -189,6 +189,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             
             /*
+            *The lower category BitMask, firstBody should be the same as the Monster
+            (ie also lower) and so their & result should be 1, not 0
             * & is bitwise AND operator that combines the bits of two numbers. It returns a new number whose bits are set to 1 only if the bits were equal to 1 in both input numbers
             * as! = guaranteed conversion of a value to another type
             */
