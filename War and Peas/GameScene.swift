@@ -142,9 +142,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //check if projectile is being launched in right direction
         let projectile = SKSpriteNode(imageNamed: "Pea")
         projectile.position = player.position
-        let offset = touchLocation - projectile.position
-        if (offset.x < 0) { return }
-        addChild(projectile)
         
         projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectile.size.width/2)
         projectile.physicsBody?.dynamic = true
@@ -153,6 +150,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         projectile.physicsBody?.collisionBitMask = PhysicsCategory.None
         //use precise... for fast moving bodies like projectiles
         projectile.physicsBody?.usesPreciseCollisionDetection = true
+        
+        let offset = touchLocation - projectile.position
+        if (offset.x < 0) { return }
+        addChild(projectile)
         
         //normalize into unit vector of length 1 and shoot off screen
         let direction = offset.normalized()
@@ -164,6 +165,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let actionMoveDone = SKAction.removeFromParent()
         projectile.runAction(SKAction.sequence([actionMove, actionMoveDone]))
         
+    }
         func projectileDidCollideWithMonster(projectile:SKSpriteNode, monster:SKSpriteNode) {
             print("Hit")
             projectile.removeFromParent()
@@ -171,9 +173,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         
-        //check if a collision of monster and projectile, then call didCollide 
+        //check if a collision of monster and projectile, then call didCollide
         func didBeginContact(contact: SKPhysicsContact) {
-            
+            print("Hit1")
             var firstBody: SKPhysicsBody
             var secondBody: SKPhysicsBody
             if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
@@ -189,6 +191,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             * & is bitwise AND operator that combines the bits of two numbers. It returns a new number whose bits are set to 1 only if the bits were equal to 1 in both input numbers
             * as! = guaranteed conversion of a value to another type
             */
+            
             if ((firstBody.categoryBitMask & PhysicsCategory.Monster != 0) &&
                 (secondBody.categoryBitMask & PhysicsCategory.Projectile != 0)) {
                     projectileDidCollideWithMonster(firstBody.node as! SKSpriteNode, monster: secondBody.node as! SKSpriteNode)
@@ -196,5 +199,5 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
     }
-}
+
 
