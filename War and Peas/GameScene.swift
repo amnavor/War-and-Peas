@@ -169,6 +169,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             projectile.removeFromParent()
             monster.removeFromParent()
         }
+        
+        
+        //check if a collision of monster and projectile, then call didCollide 
+        func didBeginContact(contact: SKPhysicsContact) {
+            
+            var firstBody: SKPhysicsBody
+            var secondBody: SKPhysicsBody
+            if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+                firstBody = contact.bodyA
+                secondBody = contact.bodyB
+            } else {
+                firstBody = contact.bodyB
+                secondBody = contact.bodyA
+            }
+            
+            
+            /*
+            * & is bitwise AND operator that combines the bits of two numbers. It returns a new number whose bits are set to 1 only if the bits were equal to 1 in both input numbers
+            * as! = guaranteed conversion of a value to another type
+            */
+            if ((firstBody.categoryBitMask & PhysicsCategory.Monster != 0) &&
+                (secondBody.categoryBitMask & PhysicsCategory.Projectile != 0)) {
+                    projectileDidCollideWithMonster(firstBody.node as! SKSpriteNode, monster: secondBody.node as! SKSpriteNode)
+            }
+            
+        }
     }
 }
 
