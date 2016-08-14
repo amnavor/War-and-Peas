@@ -189,7 +189,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             projectile.removeFromParent()
             monster.removeFromParent()
             monstersDestroyed++
-            if (monstersDestroyed > 30) {
+            if (monstersDestroyed > 15) {
                 let reveal = SKTransition.flipHorizontalWithDuration(0.5)
                 let gameOverScene = GameOverScene(size: self.size, won: true)
                 self.view?.presentScene(gameOverScene, transition: reveal)
